@@ -60,6 +60,25 @@ if (specialtyCategory) {
 });
 
 
+ document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.food img');
+            
+            images.forEach((img) => {
+                // Dynamically set image paths
+                img.src = `./images/products/${img.dataset.image}`;
+
+                // Fallback for broken images
+                img.onerror = () => {
+                    console.error(`Image not found: ${img.src}`);
+                    img.src = './images/placeholder.png'; // Replace with a default image
+                };
+
+                // Debugging: Log image paths
+                console.log(`Loading image: ${img.src}`);
+            });
+        });
+    </script>
+
 document.querySelectorAll('.dropdown > a').forEach(link => {
   link.addEventListener('click', function (e) {
     e.preventDefault();
@@ -69,4 +88,5 @@ document.querySelectorAll('.dropdown > a').forEach(link => {
       dropdownMenu.style.display === 'block' ? 'none' : 'block';
   });
 });
+
 
